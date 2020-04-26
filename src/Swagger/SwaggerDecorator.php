@@ -38,20 +38,120 @@ final class SwaggerDecorator implements NormalizerInterface
         $docs['components']['schemas']['Credentials'] = [
             'type' => 'object',
             'properties' => [
-                'username' => [
+                'email' => [
                     'type' => 'string',
-                    'example' => 'api',
+                    'example' => 'email@hmail.com',
                 ],
                 'password' => [
                     'type' => 'string',
-                    'example' => 'api',
+                    'example' => 'mystrongpassword',
                 ],
             ],
         ];
 
+
+        $docs['components']['schemas']['Credentials2'] = [
+            'type' => 'object',
+            'properties' => [
+                'username' => [
+                    'type' => 'string',
+                    'example' => 'e@mail.com',
+                ],
+                'password' => [
+                    'type' => 'string',
+                    'example' => 'mystrongpassword',
+                ],
+            ],
+        ];
+
+        $docs['components']['schemas']['U'] = [
+            'type' => 'object',
+            'properties' => [
+                'email' => [
+                    'type' => 'string',
+                    'example' => 'email@hmail.com',
+                ],
+                'password' => [
+                    'type' => 'string',
+                    'example' => 'mystrongpassword',
+                ],
+                'firstname' => [
+                    'type' => 'string',
+                    'example' => 'Firstname (optional)'
+                ],
+                'lastname' => [
+                    'type' => 'string',
+                    'example' => 'Lastname (optional)'
+                ],
+            ]
+        ];
+
+        $docs['components']['schemas']['Us'] = [
+            'type' => 'object',
+            'properties' => [
+                'success' => [
+                    'type' => 'boolean',
+                    'example' => 'true',
+                ],
+                'user' => [
+                    '$ref' => '#/components/schemas/User',
+                ]
+            ]
+        ];
+
+        $docs['components']['schemas']['Us2'] = [
+            'type' => 'object',
+            'properties' => [
+                'error' => [
+                    'type' => 'boolean',
+                    'example' => 'true',
+                ],
+                'message' => [
+                    'type' => 'string',
+                    'example' => "L'email est déjà utilisée",
+                ]
+            ]
+        ];
+
+        $docs['components']['schemas']['Cities'] = [
+            'type' => 'array',
+            'properties' => [
+                'city' => [
+                    'type' => 'string',
+                    'example' => 'Compiègne',
+                ],
+                'nbTrips' => [
+                    'type' => 'int',
+                    'example' => "3",
+                ]
+            ]
+        ];
+
         $tokenDocumentation = [
             'paths' => [
-                '/authentication_token' => [
+                '/api/trips/cities' => [
+                    'get' => [
+                        'tags' => ['Trip'],
+                        'operationId' => 'getCities',
+                        'summary' => 'Get cities used in trips',
+                        'requestBody' => [
+                            'description' => 'Get cities used in trips',
+                        ],
+                        'responses' => [
+                            Response::HTTP_OK => [
+                                'description' => 'Cities',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            '$ref' => '#/components/schemas/Cities',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                '/login_check' => [
                     'post' => [
                         'tags' => ['Token'],
                         'operationId' => 'postCredentialsItem',
@@ -61,7 +161,7 @@ final class SwaggerDecorator implements NormalizerInterface
                             'content' => [
                                 'application/json' => [
                                     'schema' => [
-                                        '$ref' => '#/components/schemas/Credentials',
+                                        '$ref' => '#/components/schemas/Credentials2',
                                     ],
                                 ],
                             ],
@@ -73,6 +173,45 @@ final class SwaggerDecorator implements NormalizerInterface
                                     'application/json' => [
                                         'schema' => [
                                             '$ref' => '#/components/schemas/Token',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                '/register' => [
+                    'post' => [
+                        'tags' => ['User'],
+                        'operationId' => 'postUser',
+                        'summary' => 'Create a new account',
+                        'requestBody' => [
+                            'description' => 'Create new account',
+                            'content' => [
+                                'application/json' => [
+                                    'schema' => [
+                                        '$ref' => '#/components/schemas/U',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'responses' => [
+                            Response::HTTP_OK => [
+                                'description' => 'Success',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            '$ref' => '#/components/schemas/Us',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            Response::HTTP_FORBIDDEN => [
+                                'description' => 'Error',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            '$ref' => '#/components/schemas/Us2',
                                         ],
                                     ],
                                 ],

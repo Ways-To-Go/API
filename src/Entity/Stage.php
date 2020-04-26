@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -17,36 +18,43 @@ class Stage
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *  @Groups("trip")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("trip")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("trip")
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups("trip")
      */
     private $mark;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("trip")
      */
     private $description;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("trip")
      */
     private $arrival;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("trip")
      */
     private $departure;
 
@@ -58,16 +66,19 @@ class Stage
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageFrom", cascade={"persist", "remove"})
+     * @Groups("trip")
      */
     private $departureTransport;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageTo", cascade={"persist", "remove"})
+     * @Groups("trip")
      */
     private $arrivalTransport;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage")
+     * @Groups("trip")
      */
     private $photos;
 

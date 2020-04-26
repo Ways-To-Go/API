@@ -19,6 +19,14 @@ class StageRepository extends ServiceEntityRepository
         parent::__construct($registry, Stage::class);
     }
 
+
+    public function getCities() {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id) as nbTrips, c.city')
+            ->groupBy("c.city")
+            ->getQuery()
+            ->execute();
+    }
     // /**
     //  * @return Stage[] Returns an array of Stage objects
     //  */

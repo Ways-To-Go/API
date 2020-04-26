@@ -2,62 +2,79 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
- */
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "stages.city": "exact"
+ * })
+ *
+ * @ApiResource(normalizationContext={"groups"={"trip"}})
+*/
 class Trip
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"trip"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"trip"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"trip"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"trip"})
      */
     private $vegan;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"trip"})
      */
     private $ecological;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"trip:read", "trip:write"})
+     * @Groups({"trip"})
      */
     private $author;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="recoredTrips")
+     * @Groups({"trip"})
      */
     private $followers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="trip", orphanRemoval=true)
+     * @Groups({"trip"})
      */
     private $stages;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="trip")
+     * @Groups({"trip"})
      */
     private $photos;
 

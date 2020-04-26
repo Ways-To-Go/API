@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -20,16 +21,19 @@ class Photo
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("trip")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("trip")
      */
     private $path;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("trip")
      */
     private $description;
 
