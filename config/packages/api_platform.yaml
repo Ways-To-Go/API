@@ -1,4 +1,7 @@
 api_platform:
+    title: 'Ways To Go'
+    description: 'API for Ways To Go'
+    version: '1.0.0'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
