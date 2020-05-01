@@ -47,6 +47,11 @@ class Photo
      */
     private $stage;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isCover;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +113,18 @@ class Photo
     public function setStage(?Stage $stage): self
     {
         $this->stage = $stage;
+
+        return $this;
+    }
+
+    public function getIsCover(): ?bool
+    {
+        return $this->isCover;
+    }
+
+    public function setIsCover(?bool $isCover): self
+    {
+        $this->isCover = $isCover;
 
         return $this;
     }

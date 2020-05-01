@@ -82,6 +82,16 @@ class Stage
      */
     private $photos;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lng;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -238,6 +248,30 @@ class Stage
                 $photo->setStage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
 
         return $this;
     }
