@@ -49,6 +49,7 @@ class Photo
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     *  @Groups("trip")
      */
     private $isCover;
 

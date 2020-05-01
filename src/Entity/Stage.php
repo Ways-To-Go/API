@@ -84,11 +84,13 @@ class Stage
 
     /**
      * @ORM\Column(type="float")
+     *  @Groups("trip")
      */
     private $lng;
 
     /**
      * @ORM\Column(type="float")
+     *  @Groups("trip")
      */
     private $lat;
 
