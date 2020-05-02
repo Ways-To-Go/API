@@ -15,6 +15,12 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiFilter(SearchFilter::class, properties={
  *     "stages.city": "exact"
  * })
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "keywords": "partial",
+	"title": "partial"
+ * })
+ *
+
  *
  * @ApiResource(normalizationContext={"groups"={"trip"}})
 */
@@ -77,6 +83,12 @@ class Trip
      * @Groups({"trip"})
      */
     private $photos;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"trip"})
+     */
+    private $keywords;
 
     public function __construct()
     {
@@ -236,6 +248,18 @@ class Trip
                 $photo->setTrip(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getKeywords(): ?string
+    {
+        return $this->keywords;
+    }
+
+    public function setKeywords(?string $keywords): self
+    {
+        $this->keywords = $keywords;
 
         return $this;
     }
