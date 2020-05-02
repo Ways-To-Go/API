@@ -11,16 +11,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
- * @ApiFilter(SearchFilter::class, properties={
- *     "stages.city": "exact",
- *     "keywords": "partial",
-	"title": "partial"
- * })
- *
-
- *
  * @ApiResource(normalizationContext={"groups"={"trip"}})
+ * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
+ * @ApiFilter(SearchFilter::class, properties={"title": "ipartial","keywords": "ipartial", "stages.city": "exact"})
 */
 class Trip
 {
