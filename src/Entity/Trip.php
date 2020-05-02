@@ -13,9 +13,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
  * @ApiFilter(SearchFilter::class, properties={
- *     "stages.city": "exact"
- * })
- * @ApiFilter(SearchFilter::class, properties={
+ *     "stages.city": "exact",
  *     "keywords": "partial",
 	"title": "partial"
  * })
