@@ -94,6 +94,11 @@ class Stage
      */
     private $lat;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -274,6 +279,18 @@ class Stage
     public function setLat(float $lat): self
     {
         $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
