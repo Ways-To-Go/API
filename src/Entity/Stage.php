@@ -9,9 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource(
- *     denormalizationContext={"groups"={"post"}}
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
 class Stage
@@ -26,25 +24,25 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $mark;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $description;
 
@@ -56,7 +54,7 @@ class Stage
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $departure;
 
@@ -68,37 +66,36 @@ class Stage
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageFrom", cascade={"persist", "remove"})
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $departureTransport;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageTo", cascade={"persist", "remove"})
-     * @Groups({"trip", "post"})
+     * @Groups("trip")
      */
     private $arrivalTransport;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage", cascade={"persist"})
-     * @Groups({"trip", "post"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage")
+     * @Groups("trip")
      */
     private $photos;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"trip", "post"})
+     *  @Groups("trip")
      */
     private $lng;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"trip", "post"})
+     *  @Groups("trip")
      */
     private $lat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"trip", "post"})
      */
     private $title;
 
