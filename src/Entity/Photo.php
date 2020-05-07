@@ -43,7 +43,7 @@ class Photo
     private $trip;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="photos", cascade={"persist"})
      * @Groups({"trip", "post"})
      */
     private $stage;
