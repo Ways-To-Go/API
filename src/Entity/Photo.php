@@ -21,19 +21,19 @@ class Photo
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $path;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $description;
 
@@ -44,12 +44,13 @@ class Photo
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="photos")
+     * @Groups({"trip", "post"})
      */
     private $stage;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     *  @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $isCover;
 
