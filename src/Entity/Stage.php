@@ -9,7 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     denormalizationContext={"groups"={"post"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
 class Stage
@@ -24,25 +26,25 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $mark;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $description;
 
@@ -54,7 +56,7 @@ class Stage
 
     /**
      * @ORM\Column(type="date")
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $departure;
 
@@ -66,36 +68,37 @@ class Stage
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageFrom", cascade={"persist", "remove"})
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $departureTransport;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageTo", cascade={"persist", "remove"})
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $arrivalTransport;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage")
-     * @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $photos;
 
     /**
      * @ORM\Column(type="float")
-     *  @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $lng;
 
     /**
      * @ORM\Column(type="float")
-     *  @Groups("trip")
+     * @Groups({"trip", "post"})
      */
     private $lat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"trip", "post"})
      */
     private $title;
 
