@@ -64,13 +64,13 @@ class Trip
     private $followers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="trip", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="trip", orphanRemoval=true, cascade={"persist", "remove"})
      * @Groups({"trip"})
      */
     private $stages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="trip")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="trip", cascade={"persist", "remove"})
      * @Groups({"trip"})
      */
     private $photos;

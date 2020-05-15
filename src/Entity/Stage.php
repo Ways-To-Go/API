@@ -77,7 +77,7 @@ class Stage
     private $arrivalTransport;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage", cascade={"persist", "remove"})
      * @Groups("trip")
      */
     private $photos;
