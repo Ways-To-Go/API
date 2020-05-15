@@ -66,7 +66,7 @@ class User implements UserInterface
     private $followers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="author", cascade={"persist", "remove"})
      */
     private $trips;
 

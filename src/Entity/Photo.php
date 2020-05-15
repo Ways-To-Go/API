@@ -38,12 +38,12 @@ class Photo
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="photos", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="photos")
      */
     private $trip;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="photos", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="photos")
      */
     private $stage;
 

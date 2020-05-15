@@ -20,13 +20,13 @@ class Transport
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="departureTransport", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="departureTransport", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $stageFrom;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="arrivalTransport", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="arrivalTransport", cascade={"persist"})
      */
     private $stageTo;
 

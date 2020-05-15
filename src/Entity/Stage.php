@@ -59,7 +59,7 @@ class Stage
     private $departure;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="stages",cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $trip;

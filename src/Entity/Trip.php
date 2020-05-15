@@ -50,7 +50,7 @@ class Trip
     private $ecological;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="trips", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"trip:read", "trip:write"})
      * @Groups({"trip"})
