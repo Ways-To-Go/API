@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AuthController extends AbstractController
@@ -42,7 +44,23 @@ class AuthController extends AbstractController
         ]);
     }
 
-    public function me() {
-        return $this->getUser();
+    public function me(Request $request, TokenStorageInterface $tokenStorage) {
+
+        if (null === $token = $tokenStorage->getToken()) {
+            return new JsonResponse([
+                'status' => 'error',
+                'message' => 'You are not logged in'
+            ], 403);
+        }
+
+        if (!is_object($user = $token->getUser())) {
+            return new JsonResponse([
+                'status' => 'error',
+                'message' => 'You are not logged in'
+            ], 403);
+        }
+
+        return $user;
+
     }
 }
