@@ -36,6 +36,14 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        api_me:
+            pattern:  ^(/api/me|/api/users)
+            stateless: true
+            anonymous: false
+            provider: entity_provider
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
         - { path: ^/api, methods: [GET], roles: IS_AUTHENTICATED_ANONYMOUSLY}

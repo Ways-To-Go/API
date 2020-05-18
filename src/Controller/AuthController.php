@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Guard\JWTTokenAuthenticator;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,9 +47,8 @@ class AuthController extends AbstractController
         ]);
     }
 
-    public function me(Request $request, TokenStorageInterface $tokenStorage, JWTTokenAuthenticator $authenticator, JWTManager $manager) {
-        $preAuthToken = $authenticator->getCredentials($request);
-        return $this->json($manager->decode($preAuthToken));
+    public function me() {
+        return $this->json($this->getUser());
 
     }
 }
