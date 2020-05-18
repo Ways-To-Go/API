@@ -151,6 +151,28 @@ final class SwaggerDecorator implements NormalizerInterface
                         ],
                     ],
                 ],
+                '/api/me' => [
+                    'get' => [
+                        'tags' => ['User'],
+                        'operationId' => 'getMe',
+                        'summary' => 'Get user logged in',
+                        'requestBody' => [
+                            'description' => 'Get current user',
+                        ],
+                        'responses' => [
+                            Response::HTTP_OK => [
+                                'description' => 'User',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            '$ref' => '#/components/schemas/User',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 '/login_check' => [
                     'post' => [
                         'tags' => ['Token'],

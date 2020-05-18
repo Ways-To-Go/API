@@ -12,6 +12,11 @@ trips_cities:
     controller: App\Controller\TripController::getCities
     methods:  GET
 
+api_me:
+    path: /api/me
+    methods: GET
+    controller: App\Controller\AuthController::me
+
 swagger_ui:
     path: /docs
     controller: api_platform.swagger.action.ui

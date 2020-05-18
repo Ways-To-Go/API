@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -41,5 +40,9 @@ class AuthController extends AbstractController
             'success' => true,
             'user' => $user
         ]);
+    }
+
+    public function me() {
+        return $this->getUser();
     }
 }
