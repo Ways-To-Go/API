@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Guard\JWTTokenAuthenticator;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,23 +46,9 @@ class AuthController extends AbstractController
         ]);
     }
 
-    public function me(Request $request, TokenStorageInterface $tokenStorage) {
-
-        if (null === $token = $tokenStorage->getToken()) {
-            return new JsonResponse([
-                'status' => 'error',
-                'message' => 'You are not logged in'
-            ], 403);
-        }
-
-        if (!is_object($user = $token->getUser())) {
-            return new JsonResponse([
-                'status' => 'error',
-                'message' => 'You are not logged in'
-            ], 403);
-        }
-
-        return $user;
+    public function me(Request $request, TokenStorageInterface $tokenStorage, JWTTokenAuthenticator $authenticator, JWTManager $manager) {
+        $preAuthToken = $authenticator->getCredentials($request);
+        return $this->json($manager->decode($preAuthToken));
 
     }
 }
