@@ -11,7 +11,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
- * @ApiResource(normalizationContext={"groups"={"trip"}})
+ * @ApiResource(normalizationContext={"groups"={"trip"}},
+ *     collectionOperations={
+ *          "get",
+ *         "post"={"security_post_denormalize"="user == object.getAuthor()"}
+ *     },
+ *    itemOperations={
+ *         "get",
+ *         "put"={"security"="object.getAuthor() == user"},
+ *         "delete"={"security"="object.getAuthor() == user"}
+ *     }
+)
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
  * @ApiFilter(SearchFilter::class, properties={"title": "ipartial","keywords": "ipartial", "stages.city": "exact"})
 */
