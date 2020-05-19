@@ -21,31 +21,31 @@ class Trip
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $vegan;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $ecological;
 
@@ -59,25 +59,25 @@ class Trip
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="recoredTrips")
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $followers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="trip", orphanRemoval=true, cascade={"persist", "remove"})
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $stages;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="trip", cascade={"persist", "remove"})
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $photos;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"trip"})
+     * @Groups({"trip", "user"})
      */
     private $keywords;
 

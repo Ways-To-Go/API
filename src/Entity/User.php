@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"user"}})
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -19,11 +19,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"user"})
      */
     private $email;
 
@@ -40,13 +42,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *  @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $lastName;
 
@@ -57,21 +59,25 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followers")
+     * @Groups({"user"})
      */
     private $follows;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="follows")
+     * @Groups({"user"})
      */
     private $followers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="author", cascade={"persist", "remove"})
+     * @Groups({"user"})
      */
     private $trips;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Trip", inversedBy="followers")
+     * @Groups({"user"})
      */
     private $recoredTrips;
 

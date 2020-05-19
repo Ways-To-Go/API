@@ -32,7 +32,7 @@ class Transport
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $type;
 

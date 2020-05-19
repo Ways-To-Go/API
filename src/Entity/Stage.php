@@ -18,43 +18,43 @@ class Stage
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *  @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $mark;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $arrival;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $departure;
 
@@ -66,36 +66,37 @@ class Stage
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageFrom", cascade={"persist", "remove"})
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $departureTransport;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Transport", mappedBy="stageTo", cascade={"persist", "remove"})
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $arrivalTransport;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="stage", cascade={"persist", "remove"})
-     * @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $photos;
 
     /**
      * @ORM\Column(type="float")
-     *  @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $lng;
 
     /**
      * @ORM\Column(type="float")
-     *  @Groups("trip")
+     * @Groups({"trip", "user"})
      */
     private $lat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"trip", "user"})
      */
     private $title;
 
