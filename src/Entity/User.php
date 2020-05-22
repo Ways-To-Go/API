@@ -318,8 +318,8 @@ class User implements UserInterface
 
     public function addRecordedTrip(Trip $recordedTrip): self
     {
-        if (!$this->recordedTrip->contains($recordedTrip)) {
-            $this->recordedTrip[] = $recordedTrip;
+        if (!$this->recordedTrips->contains($recordedTrip)) {
+            $this->recordedTrips[] = $recordedTrip;
         }
 
         return $this;
@@ -327,8 +327,8 @@ class User implements UserInterface
 
     public function removeRecordedTrip(Trip $recordedTrip): self
     {
-        if ($this->recordedTrip->contains($recordedTrip)) {
-            $this->recordedTrip->removeElement($recordedTrip);
+        if ($this->recordedTrips->contains($recordedTrip)) {
+            $this->recordedTrips->removeElement($recordedTrip);
         }
 
         return $this;
