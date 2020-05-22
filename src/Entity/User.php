@@ -79,7 +79,7 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\Trip", inversedBy="followers")
      * @Groups({"user"})
      */
-    private $recoredTrips;
+    private $recordedTrips;
 
     public function __construct()
     {
@@ -87,7 +87,7 @@ class User implements UserInterface
         $this->follows = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->trips = new ArrayCollection();
-        $this->recoredTrips = new ArrayCollection();
+        $this->recordedTrips = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -311,24 +311,24 @@ class User implements UserInterface
     /**
      * @return Collection|Trip[]
      */
-    public function getRecoredTrips(): Collection
+    public function getRecordedTrips(): Collection
     {
-        return $this->recoredTrips;
+        return $this->recordedTrips;
     }
 
-    public function addRecoredTrip(Trip $recoredTrip): self
+    public function addRecordedTrip(Trip $recordedTrip): self
     {
-        if (!$this->recoredTrips->contains($recoredTrip)) {
-            $this->recoredTrips[] = $recoredTrip;
+        if (!$this->recordedTrip->contains($recordedTrip)) {
+            $this->recordedTrip[] = $recordedTrip;
         }
 
         return $this;
     }
 
-    public function removeRecoredTrip(Trip $recoredTrip): self
+    public function removeRecordedTrip(Trip $recordedTrip): self
     {
-        if ($this->recoredTrips->contains($recoredTrip)) {
-            $this->recoredTrips->removeElement($recoredTrip);
+        if ($this->recordedTrip->contains($recordedTrip)) {
+            $this->recordedTrip->removeElement($recordedTrip);
         }
 
         return $this;
