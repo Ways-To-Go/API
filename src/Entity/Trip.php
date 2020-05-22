@@ -68,7 +68,7 @@ class Trip
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="recoredTrips")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="recordedTrips")
      * @Groups({"trip", "user"})
      */
     private $followers;
@@ -175,7 +175,7 @@ class Trip
     {
         if (!$this->followers->contains($follower)) {
             $this->followers[] = $follower;
-            $follower->addRecoredTrip($this);
+            $follower->addRecordedTrip($this);
         }
 
         return $this;
@@ -185,7 +185,7 @@ class Trip
     {
         if ($this->followers->contains($follower)) {
             $this->followers->removeElement($follower);
-            $follower->removeRecoredTrip($this);
+            $follower->removeRecordedTrip($this);
         }
 
         return $this;
