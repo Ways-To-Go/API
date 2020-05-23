@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource(normalizationContext={"groups"={"trip"}},
@@ -24,7 +25,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 )
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
  * @ApiFilter(SearchFilter::class, properties={"title": "ipartial","keywords": "ipartial", "stages.city": "exact"})
-*/
+ * @ApiFilter(BooleanFilter::class, properties={"vegan", "ecological"})
+ */
 class Trip
 {
     /**
