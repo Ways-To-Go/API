@@ -81,6 +81,12 @@ class User implements UserInterface
      */
     private $recordedTrips;
 
+    /**
+     * @SerializedName("password")
+     */
+    private $plainPassword;
+
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -333,4 +339,15 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
 }
