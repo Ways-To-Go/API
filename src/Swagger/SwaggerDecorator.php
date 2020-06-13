@@ -174,7 +174,7 @@ final class SwaggerDecorator implements NormalizerInterface
                     ],
                 ],
                 '/api/password' => [
-                    'get' => [
+                    'post' => [
                         'tags' => ['User'],
                         'operationId' => 'checkPassword',
                         'summary' => 'Check if password correspond to current user',
