@@ -3,6 +3,11 @@ register:
     controller: App\Controller\AuthController::register
     methods: POST
 
+password_check:
+    path: /api/password
+    controller: App\Controller\AuthController::checkPassword
+    methods: POST
+
 login_check:
     path:     /login_check
     methods:  [POST]

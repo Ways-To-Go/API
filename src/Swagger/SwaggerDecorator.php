@@ -173,6 +173,47 @@ final class SwaggerDecorator implements NormalizerInterface
                         ],
                     ],
                 ],
+                '/api/password' => [
+                    'get' => [
+                        'tags' => ['User'],
+                        'operationId' => 'checkPassword',
+                        'summary' => 'Check if password correspond to current user',
+                        'requestBody' => [
+                            'description' => 'Check if password correspond to current user',
+                            'content' => [
+                                'application/json' => [
+                                    'schema' => [
+                                        'type' => 'object',
+                                        'properties' => [
+                                            'password' => [
+                                                'type' => 'string',
+                                                'example' => 'mystrongpassword',
+                                            ],
+                                        ]
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'responses' => [
+                            Response::HTTP_OK => [
+                                'description' => 'User',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'valid' => [
+                                                    'type' => 'boolean',
+                                                    'example' => 'true',
+                                                ],
+                                            ]
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 '/login_check' => [
                     'post' => [
                         'tags' => ['Token'],

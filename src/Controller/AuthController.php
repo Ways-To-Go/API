@@ -47,6 +47,17 @@ class AuthController extends AbstractController
         ]);
     }
 
+    public function checkPassword(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $repository)
+    {
+        $body = json_decode($request->getContent());
+        if(!isset($body->password)) {
+            return $this->json(['error' => 'wrong_data', 'message' => 'Password requis'], 401);
+        }
+        return $this->json([
+            'valid' => $encoder->isPasswordValid($this->getUser(), $body->password)
+        ]);
+    }
+
     public function me() {
         return $this->json($this->getUser());
 
